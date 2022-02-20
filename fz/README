@@ -22,3 +22,5 @@ $minizinc --compile --solver org.minizinc.mzn-fzn -I mznlib/ f.mzn d.dzn --fzn f
 Notes:
 
 */ Compilation note: If the solver does not plot any information, you need to recompile your code with g++-05. 
+*/ The aim of the output is to give the score of each configuration. The score of a configuration is based of the running time, the proof of optimality, and the oobjective value found by the configuration. The score is a value in [0,100] where 100 is the best score and 0 is the worst score. 
+
