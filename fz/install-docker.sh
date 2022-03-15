@@ -4,7 +4,6 @@ read -p "Press [Enter] key to start installation of Mistral-2.0"
 
 apt-get update
 apt-get -y install wget
-cd /entry_data
 
 apt-get -y install nano
 apt-get -y install software-properties-common
