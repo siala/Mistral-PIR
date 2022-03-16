@@ -1,0 +1,23 @@
+whirlpool  
+decisionset  
+stable-goods  
+
+
+running tonight
+
+
+
+
+exemple ./mistral-fz --time_limit 1 --recommended 2  --seed 3 benchmark/fzn-mono2.fzn 
+
+./all-in-folder.sh 100 3 1900 benchmark/stable-goods & 
+./all-in-folder.sh 100 3 1900 benchmark/decisionset & 
+
+./all-in-folder.sh 1200 3 1900 benchmark/stable-goods &
+./all-in-folder.sh 1200 3 1900 benchmark/decisionset &
+
+
+
+
+
+nohup ma commande !!
