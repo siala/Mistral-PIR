@@ -786,7 +786,7 @@ int main(int argc, char *argv[])
 					}
 					else{
 						best_cpu_time=vector_cpu_time[1] ;
-						best_conf=configurations[1] ;
+						best_conf=1 ;
 						for (int i = 1; i< vector_cpu_time.size; ++i)
 							if ( vector_cpu_time[i]  < best_cpu_time ){
 								best_cpu_time=vector_cpu_time[i];
@@ -803,7 +803,7 @@ int main(int argc, char *argv[])
 		{
 
 			if (verbos){
-				std::cout << " Caracteristics: Satisfaction/Minization/Maximisation ? (1,2, or 3)  Variables SearchVariables SmallVariables Constraints GlobalConstraints SearchVars/Vars SmallVars/vars GlobalConstraints/Constraints Vars/Constraints " <<	std::endl;
+				std::cout << " Caracteristics: Satisfaction/Minization/Maximisation ? (1,2, or 3)  Variables SmallVariables Constraints GlobalConstraints SearchVars/Vars SmallVars/vars GlobalConstraints/Constraints Vars/Constraints " <<	std::endl;
 			}
 
 			//std::cout << " " << cmd.get_seed() ;
@@ -837,9 +837,9 @@ int main(int argc, char *argv[])
 
 			value=  nb_var/nb_constraints ;
 			value= round( value * 100.0 ) / 100.0;
-			std::cout << " " << value ;
+			//std::cout << " " << value ;
 			//std::cout << std::endl ;
-			std::cout << " " << cmd.get_seed() ;
+			//std::cout << " " << cmd.get_seed() ;
 			std::cout <<std::flush;
 
 		}
