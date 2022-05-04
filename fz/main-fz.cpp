@@ -350,6 +350,8 @@ int main(int argc, char *argv[])
 								all.add (conf) ;
 								if (verbos)
 								{
+									
+									std::cout <<  std::endl;
 									std::cout <<  " c restart  " << restart[r] << std::endl;
 									std::cout <<  " c aux  " << aux[a] << std::endl;
 									std::cout <<  " c var_heuristic  " << var_heuristic[h_var] << std::endl;
