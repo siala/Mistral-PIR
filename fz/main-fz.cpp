@@ -339,14 +339,25 @@ int main(int argc, char *argv[])
 		all.add(0) ;
 
 		for (unsigned int d = 0; d< decay.size ; ++d)
-			for (unsigned int r = 0; r< restart.size ; ++r)
-				for (unsigned int a = 0; a< aux.size ; ++a)
-					for (unsigned int s = 0; s< selector.size ; ++s)
-						for (unsigned int h_var = 0; h_var< var_heuristic.size ; ++h_var)
-							for (unsigned int h_val = 0; h_val< val_heuristic.size ; ++h_val){
+			for (unsigned int s = 0; s< selector.size ; ++s)
+				for (unsigned int h_val = 0; h_val< val_heuristic.size ; ++h_val)
+					for (unsigned int h_var = 0; h_var< var_heuristic.size ; ++h_var)
+						for (unsigned int a = 0; a< aux.size ; ++a)
+							for (unsigned int r = 0; r< restart.size ; ++r)
+							{
 								conf = decay[d] + 10* restart[r] + 100* aux[a] + 1000 * selector[s] + 10000 * var_heuristic[h_var] + 100000 * val_heuristic[h_val];
 								//std::cout << conf<<  " is a new conf "<< std::endl;
 								all.add (conf) ;
+								if (verbos)
+								{
+									std::cout <<  " c restart  " << restart[r] << std::endl;
+									std::cout <<  " c aux  " << aux[a] << std::endl;
+									std::cout <<  " c var_heuristic  " << var_heuristic[h_var] << std::endl;
+									std::cout <<  " c val_heuristic  " << val_heuristic[h_val] << std::endl;
+									std::cout <<  " c selector  " << selector[s] << std::endl;
+									std::cout <<  " c decay  " << decay[d] << std::endl;
+								}
+								
 							}
 
 		//if (verbos)
