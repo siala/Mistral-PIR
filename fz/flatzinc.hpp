@@ -274,7 +274,7 @@ public:
 	double cpu_besttime = INFTY;
 	bool optimal=false;
 	bool found_a_solution = false;
-
+	bool print =  false ;
 
 protected:
 	/// Mistral stuff

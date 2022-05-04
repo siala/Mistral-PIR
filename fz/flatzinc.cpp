@@ -611,14 +611,14 @@ void FlatZincModel::specific_configuration(int rec){
 
 	int val_heuristic = previous_divided_by_10 % 10 ;
 
-	bool print = false;
+	//bool print =  false ;
 
-	if (print)
+	/*if (false)
 	{
 
 		std::cout << std::endl;
-		std::cout << " c using configuration:  " << rec << std::endl;
-		std::cout << " c decay " << decay << std::endl;
+		std::cout << " c using configuration:  "  << std::endl;
+		// std::cout << " c decay " << decay << std::endl;
 		std::cout << " c restart " << restart << std::endl;
 		std::cout << " c aux " << aux << std::endl;
 		//	std::cout << " c selector " << selector << std::endl;
@@ -626,6 +626,7 @@ void FlatZincModel::specific_configuration(int rec){
 		std::cout << " c val_heuristic " << val_heuristic << std::endl;
 		std::cout << std::endl;
 	}
+	*/
 
 	assert (rec == decay  + 10* restart + 100* aux  + 1000 * selector + 10000 * var_heuristic + 100000 * val_heuristic );
 
@@ -636,23 +637,32 @@ void FlatZincModel::specific_configuration(int rec){
 	//_option_heuristic = new LastConflict < GenericDVO < MinDomainOverWeight, 2, ConflictCountManager >,  Guided< MinValue >,  Guided< MinValue >, 1 > (&solver);
 	//break;
 
-	switch(decay) {
+
+	switch(restart) {
 	case 1:
-		solver.parameters.activity_decay = 0.95;
+		if (print )
+			std::cout << " c luby restarts " << std::endl;
+		_option_policy = new Luby();
 		break;
 	case 2:
-		solver.parameters.activity_decay = 0.65;
+		if (print )
+			std::cout << " c geometric restarts " << std::endl;
+		_option_policy = new Geometric();
 		break;
 	default:
-		std::cout << " No known decay " << std::endl;
+		std::cout << " No known restart " << std::endl;
 		exit(1);
 	}
 
 	switch(aux) {
 	case 1:
+		if (print )
+			std::cout << " c branch_on_auxilary true " << std::endl;
 		branch_on_auxilary = true ;
 		break;
 	case 2:
+		if (print )
+			std::cout << " c branch_on_auxilary false " << std::endl;
 		branch_on_auxilary= false;
 		break;
 	default:
@@ -660,15 +670,22 @@ void FlatZincModel::specific_configuration(int rec){
 		exit(1);
 	}
 
-	switch(restart) {
+
+	switch(decay) {
 	case 1:
-		_option_policy = new Luby();
+
+		if (print )
+			std::cout << " c activity_decay 0.95 " << std::endl;
+		solver.parameters.activity_decay = 0.95;
 		break;
 	case 2:
-		_option_policy = new Geometric();
+		if (print )
+			std::cout << " c activity_decay 0.65 " << std::endl;
+		solver.parameters.activity_decay = 0.65;
 		break;
 	default:
-		std::cout << " No known restart " << std::endl;
+	
+		std::cout << " No known decay " << std::endl;
 		exit(1);
 	}
 

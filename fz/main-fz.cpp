@@ -64,6 +64,8 @@ int main(int argc, char *argv[])
 	cout << "%";
 #endif
 
+	//std::cout.precision(2);
+
 	SolverCmdLine cmd("Mistral (fzn)", ' ', "2.0");
 
 	TCLAP::SwitchArg annotationArg("","follow_annotations","Uses the annotations", false);
@@ -148,161 +150,6 @@ int main(int argc, char *argv[])
 		float nb_global= 1;
 
 
-		/*
-		//Last Conflict with th 3 ewdeh, activity based search and impact (All MaxOverWeight)
-		configurations.add(11) ;
-		configurations.add(12) ;
-		configurations.add(13) ;
-		configurations.add(14) ;
-
-		configurations.add(21) ;
-		configurations.add(22) ;
-		configurations.add(23) ;
-		configurations.add(24) ;
-
-		configurations.add(31) ;
-		configurations.add(32) ;
-		configurations.add(33) ;
-		configurations.add(34) ;
-
-		configurations.add(41) ;
-		configurations.add(42) ;
-		configurations.add(43) ;
-		configurations.add(44) ;
-
-		configurations.add(51) ;
-		configurations.add(52) ;
-		configurations.add(53) ;
-		configurations.add(54) ;
-
-		configurations.add(61) ;
-		configurations.add(62) ;
-		configurations.add(63) ;
-		configurations.add(64) ;
-
-		configurations.add(71) ;
-		configurations.add(72) ;
-		configurations.add(73) ;
-		configurations.add(74) ;
-
-		configurations.add(81) ;
-		configurations.add(82) ;
-		configurations.add(83) ;
-		configurations.add(84) ;
-
-		configurations.add(111) ;
-		configurations.add(112) ;
-		configurations.add(113) ;
-		configurations.add(114) ;
-
-		configurations.add(121) ;
-		configurations.add(122) ;
-		configurations.add(123) ;
-		configurations.add(124) ;
-
-		configurations.add(131) ;
-		configurations.add(132) ;
-		configurations.add(133) ;
-		configurations.add(134) ;
-
-		configurations.add(141) ;
-		configurations.add(142) ;
-		configurations.add(143) ;
-		configurations.add(144) ;
-
-
-
-
-		//Last Conflict with th 3 ewdeh, activity based search and impact (All MaxOverWeight)
-
-		configurations.add(211) ;
-		configurations.add(212) ;
-		configurations.add(213) ;
-		configurations.add(214) ;
-
-		configurations.add(221) ;
-		configurations.add(222) ;
-		configurations.add(223) ;
-		configurations.add(224) ;
-
-		configurations.add(231) ;
-		configurations.add(232) ;
-		configurations.add(233) ;
-		configurations.add(234) ;
-
-		configurations.add(241) ;
-		configurations.add(242) ;
-		configurations.add(243) ;
-		configurations.add(244) ;
-
-		configurations.add(251) ;
-		configurations.add(252) ;
-		configurations.add(253) ;
-		configurations.add(254) ;
-
-		configurations.add(261) ;
-		configurations.add(262) ;
-		configurations.add(263) ;
-		configurations.add(264) ;
-
-		configurations.add(271) ;
-		configurations.add(272) ;
-		configurations.add(273) ;
-		configurations.add(274) ;
-
-		configurations.add(281) ;
-		configurations.add(282) ;
-		configurations.add(283) ;
-		configurations.add(284) ;
-
-		configurations.add(311) ;
-		configurations.add(312) ;
-		configurations.add(313) ;
-		configurations.add(314) ;
-
-		configurations.add(321) ;
-		configurations.add(322) ;
-		configurations.add(323) ;
-		configurations.add(324) ;
-
-		configurations.add(331) ;
-		configurations.add(332) ;
-		configurations.add(333) ;
-		configurations.add(334) ;
-
-		configurations.add(341) ;
-		configurations.add(342) ;
-		configurations.add(343) ;
-		configurations.add(344) ;
-		 */
-
-		/*
-		configurations.add(351) ;
-		configurations.add(352) ;
-		configurations.add(353) ;
-		configurations.add(354) ;
-
-		configurations.add(361) ;
-		configurations.add(362) ;
-		configurations.add(363) ;
-		configurations.add(364) ;
-
-		configurations.add(371) ;
-		configurations.add(372) ;
-		configurations.add(373) ;
-		configurations.add(374) ;
-
-		configurations.add(381) ;
-		configurations.add(382) ;
-		configurations.add(383) ;
-		configurations.add(384) ;
-		 */
-
-		//
-
-
-		//std::cout << recommended_Arg.getValue() <<  " recommended_Arg "<< std::endl;
-
 		bool verbos = details.getValue();
 
 		Vector<int> decay;
@@ -348,6 +195,7 @@ int main(int argc, char *argv[])
 								conf = decay[d] + 10* restart[r] + 100* aux[a] + 1000 * selector[s] + 10000 * var_heuristic[h_var] + 100000 * val_heuristic[h_val];
 								//std::cout << conf<<  " is a new conf "<< std::endl;
 								all.add (conf) ;
+								/*
 								if (verbos)
 								{
 									
@@ -359,7 +207,7 @@ int main(int argc, char *argv[])
 									std::cout <<  " c selector  " << selector[s] << std::endl;
 									std::cout <<  " c decay  " << decay[d] << std::endl;
 								}
-								
+								*/
 							}
 
 		//if (verbos)
@@ -374,10 +222,10 @@ int main(int argc, char *argv[])
 
 		assert (nb_configurations<= all.size) ;
 		for (int i =1 ; i <= nb_configurations; i++){
-			if (i % 2)
+			//if (i % 2)
 				configurations.add(all[i] );
-			else
-				configurations.add(all[all.size - i]);
+			//else
+			//	configurations.add(all[all.size - i]);
 			//std::cout << configurations[configurations.size-1] <<  " is a new configuration to try "<< std::endl;
 		}
 
@@ -415,6 +263,13 @@ int main(int argc, char *argv[])
 
 		for (int i = 0 ; i < configurations.size ; i++){
 
+
+			if (verbos && i>0)
+			{
+//				std::cout << std::endl ;
+				std::cout << " \n  \n c Configuration " << i ;
+				std::cout << std::endl ;
+			}	
 			Solver s;
 
 			cmd.set_parameters(s);
@@ -455,7 +310,7 @@ int main(int argc, char *argv[])
 			FlatZinc::FlatZincModel *fm = 0L;
 
 			fm = parse(cmd.get_filename(), s, p);
-
+			fm->print = verbos;
 
 			if( !fm )
 #ifdef _PARALLEL
@@ -628,22 +483,20 @@ int main(int argc, char *argv[])
 
 			if (verbos)
 			{
-
-
-				std::cout << std::endl ;
-				std::cout << " Configuration " << i ;
-				std::cout << std::endl ;
+//				std::cout << std::endl ;
+//				std::cout << " Configuration " << i ;
+//				std::cout << std::endl ;
 				//if (!is_solved_once)
 				//std::cout << "   NO Solution!!!!!!   "  << std::endl ;
 				if (fm->found_a_solution)
-					std::cout << " Found a solution" ;
+					std::cout << " c Found a solution" ;
 				else
-					std::cout << " No solution found" ;
+					std::cout << " c No solution found" ;
 
 
 				std::cout << std::endl ;
 
-				std::cout << " CPUtime" ;
+				std::cout << " c CPUtime" ;
 				//for (int i = 0; i< vector_cpu_time.size; ++i)
 				std::cout << " " <<  vector_cpu_time[i] ;
 
@@ -656,19 +509,13 @@ int main(int argc, char *argv[])
 				//std::cout << " " <<  vector_best_time[i] ;
 
 				if (is_optimisation){
-					std::cout << " Objective Value " ;
+					std::cout << " c Objective Value " ;
 					std::cout << " " <<  vector_objectiveValues[i] ;
+
+					std::cout << std::endl ;
 				}
 
-				std::cout << std::endl ;
-
-				std::cout << " IsOptimal" ;
-				//for (int i = 0; i< vector_is_optimal.size; ++i)
-				std::cout << " " <<  vector_is_optimal[i] ;
-
-				std::cout << std::endl ;
-
-
+				std::cout << " c IsOptimal ? " <<  vector_is_optimal[i]  << std::endl ;
 
 			}
 
@@ -816,7 +663,7 @@ int main(int argc, char *argv[])
 		{
 
 			if (verbos){
-				std::cout << " Caracteristics: Satisfaction/Minization/Maximisation ? (1,2, or 3)  Variables SmallVariables Constraints GlobalConstraints SearchVars/Vars SmallVars/vars GlobalConstraints/Constraints Vars/Constraints " <<	std::endl;
+				std::cout << " c Caracteristics: Satisfaction/Minization/Maximisation ? (1,2, or 3)  Variables SmallVariables Constraints GlobalConstraints SearchVars/Vars SmallVars/vars GlobalConstraints/Constraints Vars/Constraints " <<	std::endl;
 			}
 
 			//std::cout << " " << cmd.get_seed() ;
@@ -860,19 +707,21 @@ int main(int argc, char *argv[])
 	}
 
 	if (verbos) {
+
+		std::cout << std::endl ;
 		if (is_solved_once)
 		{
 			if (is_optimisation){
 				if (is_maximization)
-					std::cout <<  " Final Maximization best objective  " << best_objective_value << " TotalTime " << best_cpu_time << " IsOptimal? " << is_optimal << " Configuration " << best_conf << std::endl ;
+					std::cout <<  " c Final Maximization best objective  " << best_objective_value << "\n c TotalTime " << best_cpu_time << "\n c IsOptimal? " << is_optimal << " Configuration " << best_conf << std::endl ;
 				else
-					std::cout <<  " Final Minimization best objective  " << best_objective_value << " TotalTime " << best_cpu_time << " IsOptimal? " << is_optimal  << " Configuration " << best_conf << std::endl ;
+					std::cout <<  " c Final Minimization best objective  " << best_objective_value << "\n c  TotalTime " << best_cpu_time << "\n c IsOptimal? " << is_optimal  << " Configuration " << best_conf << std::endl ;
 			}
 			else
-				std::cout <<  " Best time across all configurations " << best_cpu_time << " with configuration " << best_conf << std::endl ;
+				std::cout <<  " c Best time across all configurations " << best_cpu_time << " with configuration " << best_conf << std::endl ;
 		}
 		else
-			std::cout <<  " Not solved" << std::endl ;
+			std::cout <<  " c Not solved" << std::endl ;
 
 
 	}
@@ -880,7 +729,7 @@ int main(int argc, char *argv[])
 	Vector<double> scores;
 
 	if (verbos)
-		std::cout <<  " The scores (from the first to the last configuration)" << std::endl ;
+		std::cout <<  " c The scores (from the first to the last configuration)" << std::endl ;
 
 	assert (has_solution.size == configurations.size);
 	for (int z = 1; z<configurations.size; ++z){
