@@ -730,7 +730,7 @@ void FlatZincModel::specific_configuration(int rec){
 			case 2:
 				//PruningCountManager
 				if ( print)
-				std::cout << " c var_heuristic PruningCountManager" << std::endl;
+					std::cout << " c var_heuristic PruningCountManager" << std::endl;
 				switch(val_heuristic) {
 				case 1:
 					if (print)
@@ -756,7 +756,7 @@ void FlatZincModel::specific_configuration(int rec){
 				case 3:
 					//ImpactManager
 					if (print)
-					std::cout << " c var_heuristic ImpactManager" << std::endl;
+						std::cout << " c var_heuristic ImpactManager" << std::endl;
 					switch(val_heuristic) {
 					case 1:
 						if (print)
@@ -827,12 +827,12 @@ void FlatZincModel::specific_configuration(int rec){
 						break;
 					case 2:
 						if (print)
-						std::cout << " c val_heuristic Guided< RandomMinMax >" << std::endl;
+							std::cout << " c val_heuristic Guided< RandomMinMax >" << std::endl;
 						_option_heuristic = new LastConflict < GenericDVO < MaxDomainOverWeight, 2, PruningCountManager >,  Guided< RandomMinMax >,  Guided< RandomMinMax >, 1 > (&solver);
 						break;
 					case 3:
 						if (print)
-						std::cout << " c val_heuristic Guided< RandomSplit >" << std::endl;
+							std::cout << " c val_heuristic Guided< RandomSplit >" << std::endl;
 						_option_heuristic = new LastConflict < GenericDVO < MaxDomainOverWeight, 2, PruningCountManager >, Guided< RandomSplit >  ,   Guided< RandomSplit > , 1 > (&solver);
 						break;
 					default:

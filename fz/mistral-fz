@@ -32,10 +32,11 @@ if len(sys.argv) > 1:
     #mcmd.extend(['-v 0', '-z 2', '--prefix_sol', '%', '--prefix_comment', '%', '--prefix_obj', '%', '--prefix_stat', '%', '--prefix_res', '%', filename, '--follow_annotations' , '--decay', '0.95', '--seed 123456789'])
 
     mcmd.extend(['-v 0', '-z 2', '--prefix_sol', '%', '--prefix_comment', '%', '--prefix_obj', '%', '--prefix_stat', '%', '--prefix_res', '%', filename, '--follow_annotations' ])
-
-#    for w in mcmd:
-#        print w,
-#    print
+	
+#	print (mcmd)
+    for w in mcmd:
+        print (w),
+    print
 
 
     mistral = subprocess.Popen(mcmd) #, stdout=subprocess.PIPE)
